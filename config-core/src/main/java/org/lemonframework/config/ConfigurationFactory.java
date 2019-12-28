@@ -29,7 +29,8 @@ import org.lemonframework.commons.loader.EnhancedServiceLoader;
  */
 public final class ConfigurationFactory {
 
-    private static final String REGISTRY_CONF_PREFIX = "leregistry";
+    private static final String REGISTRY_CONF_PATH = "lemon/";
+    private static final String REGISTRY_CONF_PREFIX = "registry";
     private static final String REGISTRY_CONF_SUFFIX = ".conf";
     private static final String ENV_SYSTEM_KEY = "LEMON_ENV";
     public static final String ENV_PROPERTY_KEY = "lemonEnv";
@@ -52,8 +53,8 @@ public final class ConfigurationFactory {
         if (null == envValue) {
             envValue = System.getenv(ENV_SYSTEM_KEY);
         }
-        CURRENT_FILE_INSTANCE = (null == envValue) ? new FileConfiguration(lemonConfigName + REGISTRY_CONF_SUFFIX)
-                : new FileConfiguration(lemonConfigName + "-" + envValue + REGISTRY_CONF_SUFFIX);
+        CURRENT_FILE_INSTANCE = (null == envValue) ? new FileConfiguration(REGISTRY_CONF_PATH + lemonConfigName + REGISTRY_CONF_SUFFIX)
+                : new FileConfiguration( REGISTRY_CONF_PATH + lemonConfigName + "-" + envValue + REGISTRY_CONF_SUFFIX);
     }
 
     private static final String NAME_KEY = "name";
@@ -88,6 +89,7 @@ public final class ConfigurationFactory {
         } catch (Exception e) {
             throw new NotSupportYetException("not support register type: " + configTypeName, e);
         }
+
         if (ConfigType.File == configType) {
             String pathDataId = ConfigurationKeys.FILE_ROOT_CONFIG + ConfigurationKeys.FILE_CONFIG_SPLIT_CHAR
                     + FILE_TYPE + ConfigurationKeys.FILE_CONFIG_SPLIT_CHAR

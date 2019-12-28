@@ -17,7 +17,7 @@
 package org.lemonframework.config;
 
 /**
- * the interface configuration provider
+ * the interface configuration provider.
  *
  * @author jiawei
  * @since 1.0.0
